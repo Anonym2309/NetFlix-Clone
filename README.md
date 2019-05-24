@@ -1,222 +1,44 @@
-# Netflix Clone
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-- **Checkout branch "React-View" for frontend only Netflix Clone with React Redux**
+## Available Scripts
 
----
+In the project directory, you can run:
 
-## Quick Links
+### `npm start`
 
-[Demo](#demo)
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-- [Live Site Demo](#live-site-demo)
-- [Video Demo](#video-demo)
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-[Tech Stack](#tech-stack)
+### `npm test`
 
-[Implementation Hightlights](#Implementation-Hightlights)
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-- [User Stories](#user-stories)
-- [Current Plans for Expansion](#current-plans-for-expansion)
-- [Future Plans for Expansion](#future-plans-for-expansion)
+### `npm run build`
 
-[Getting Started](#getting-started)
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-- [Prerequisites](#prerequisites)
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-  - [Tools & Versions](#tools-&-versions)
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-- [Building Data Pipeline](#building-data-pipeline)
+### `npm run eject`
 
-  - [Data Fetcher](#data-fetcher)
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-- [Serving Application](#serving-application)
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-  - [Movie Service](#movie-service)
-  - [User Service](#user-service)
-  - [Web Server](#web-server)
-  - [Web Client](#web-client)
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-[Deployment](#deployment)
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-[Author](#author)
+## Learn More
 
-[Acknowledgments](#acknowledgments)
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
----
-
-## Demo
-
-### Live Site Demo
-
-Demo: [Link](http://yuchiu-netflix.surge.sh/)
-
-### Video Demo
-
-![demogif](https://github.com/yuchiu/netflix-clone/blob/master/netflix-clone-optimize-gif-demo.gif)
-
----
-
-## Tech Stack
-
-- [React](https://github.com/facebook/react) ∙ [Redux](https://github.com/reduxjs/redux)
-  - web client & client data management
-- [Node.js](https://github.com/nodejs) ∙ [Expressjs](https://github.com/expressjs/express) ∙ [Jayson](https://github.com/tedeh/jayson)
-  - web server & services in service oriented architecure
-- [Python](https://github.com/python) ∙ [Scrapy](https://github.com/scrapy/scrapy)
-  - web scraper, data pipeline
-- [ElasticSearch](https://github.com/elastic/elasticsearch)
-  - persisted database for movies
-- [Postgres](https://github.com/postgres/postgres) ∙ [Sequelize](https://github.com/sequelize/sequelize)
-  - persisted database for users
-- [Kibana](https://github.com/elastic/kibana)
-  - ElasticSearch analytics data visualization
-
----
-
-## Implementation Highlights
-
-- single page application web client with React & Redux
-- service oriented architecure backend
-- REST for client server communication, JSON RPC for inter service communication
-- scrape raw movie data from imdb
-- provides processed imdb movies data with our movie service API
-- persisted ElasticSearch for movie's database for optimized searching capability
-- PostgreSQL for user's database
-
-### User Stories
-
-- users can register and log in to their account
-- landing page has collections of movie for recommendations
-- users can search for movies
-- users can browse search result by pages
-- users can select and view details of a movie
-- users can see his/her history of browsed movie
-- users can add or remove movie to his/her bookmark
-
-### Current Plans for Expansion
-
-- containerize services and database with Docker
-
-### Future Plans for Expansion
-
-- seperate search into its own service that utilize ElasticSearch, use MongoDB as persisted database for movie-service and sync data between ElasticSearch and MongoDB
-- Machine Learning recommendation system?
-- Machine Learning classification for recommended movie collections?
-- scrape and stream videos for movies?
-
----
-
-## Getting Started
-
-### Prerequisites
-
-**!important** .env file is required for setting up environment variables for this project  
- an example of .env file is located at root directory
-
-#### Tools & Versions
-
-| Tools         | Versions |
-| ------------- | -------- |
-| npm           | 6.1.0    |
-| pip           | 9.0.1    |
-| nodejs        | 10.7.0   |
-| python        | 2.7      |
-| elasticsearch | 6.3.1    |
-| postgres      | 10.5     |
-
-### Building Data Pipeline
-
-#### Data Fetcher
-
-- install dependencies
-
-```terminal
-pip install -r requirements.txt
-```
-
-- start scraper pipeline for fetching raw data from IMDB, process and store to ElasticSearch
-
-```terminal
-cd data-pipeline/imdb_scraper
-scrapy crawl "imdb_spider"
-```
-
-### Serving Application
-
-#### Movie Service
-
-- dependent on ElasticSearch as data source
-
-- install dependencies & start Movie-Service
-
-```terminal
-cd movie-service
-npm install
-npm start
-```
-
-Application will be serving on http://localhost:3230
-
-#### User Service
-
-- dependent on PostgreSQL as data source
-
-- install dependencies & start User-Service
-
-```terminal
-cd user-service
-npm install
-npm start
-```
-
-Application will be serving on http://localhost:3130
-
-#### Web Server
-
-- install dependencies & start Web-Server
-
-```terminal
-cd web-server
-npm install
-npm start
-```
-
-Application will be serving on http://localhost:3030
-
-#### Web Client
-
-- install dependencies & start application
-
-```terminal
-cd web-client
-npm install
-npm start
-```
-
-Application will be serving on http://localhost:3000
-
----
-
-## Deployment
-
-- Not setup yet
-
----
-
-## Author
-
-- Yu Chiu
-
----
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details
-
----
-
-## Acknowledgments
-
-- Not setup yet
-
----
+To learn React, check out the [React documentation](https://reactjs.org/).
